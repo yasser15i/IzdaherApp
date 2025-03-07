@@ -1472,5 +1472,61 @@
         }
     }
 </script>
+<script>
+    async function sendMessageToOpenAI(message) {
+        const apiKey = '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'; // استبدل YOUR_OPENAI_API_KEY بمفتاح API الخاص بك
+        const apiUrl = 'https://api.openai.com/v1/engines/davinci-codex/completions';
+
+        try {
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${apiKey}`
+                },
+                body: JSON.stringify({
+                    prompt: message,
+                    max_tokens: 150,
+                    n: 1,
+                    stop: null,
+                    temperature: 0.7
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            return data.choices[0].text.trim();
+        } catch (error) {
+            console.error('Error:', error);
+            return 'عذراً، حدث خطأ أثناء الاتصال بالمساعد الشخصي.';
+        }
+    }
+
+    document.getElementById('send-message-btn').addEventListener('click', async function() {
+        const userInput = document.getElementById('chat-input-text').value;
+        if (userInput.trim() === '') return;
+
+        // عرض رسالة المستخدم في الشات
+        const userMessage = document.createElement('div');
+        userMessage.className = 'message user-message';
+        userMessage.textContent = userInput;
+        document.getElementById('chat-messages').appendChild(userMessage);
+
+        // إرسال الرسالة إلى OpenAI API والحصول على الرد
+        const botResponse = await sendMessageToOpenAI(userInput);
+
+        // عرض رد المساعد الشخصي في الشات
+        const botMessage = document.createElement('div');
+        botMessage.className = 'message bot-message';
+        botMessage.textContent = botResponse;
+        document.getElementById('chat-messages').appendChild(botMessage);
+
+        // إعادة تعيين حقل الإدخال
+        document.getElementById('chat-input-text').value = '';
+    });
+</script>
 </body>
 </html>
