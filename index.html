@@ -897,6 +897,91 @@
 .back-button i {
     margin-left: 0.5rem;
 }
+/* استعلامات الوسائط لتنسيق الصفحة على جميع الأجهزة */
+
+/* الأجهزة الصغيرة (الجوالات) */
+@media (max-width: 576px) {
+    body {
+        font-size: 14px;
+    }
+    .container {
+        padding: 0.5rem;
+    }
+    .tabs {
+        flex-direction: column;
+    }
+    .tab {
+        padding: 0.5rem;
+    }
+    .tab-content {
+        padding: 1rem;
+    }
+    .reminder-form {
+        grid-template-columns: 1fr;
+    }
+    .chat-container {
+        height: 300px;
+    }
+    .exercise-card {
+        margin-bottom: 1rem;
+    }
+}
+
+/* الأجهزة المتوسطة (الأجهزة اللوحية) */
+@media (min-width: 577px) and (max-width: 768px) {
+    body {
+        font-size: 16px;
+    }
+    .container {
+        padding: 1rem;
+    }
+    .tabs {
+        flex-direction: row;
+    }
+    .tab {
+        padding: 1rem;
+    }
+    .tab-content {
+        padding: 1.5rem;
+    }
+    .reminder-form {
+        grid-template-columns: 1fr 1fr;
+    }
+    .chat-container {
+        height: 400px;
+    }
+    .exercise-card {
+        margin-bottom: 1.5rem;
+    }
+}
+
+/* الأجهزة الكبيرة (أجهزة الكمبيوتر) */
+@media (min-width: 769px) {
+    body {
+        font-size: 18px;
+    }
+    .container {
+        padding: 1.5rem;
+    }
+    .tabs {
+        flex-direction: row;
+    }
+    .tab {
+        padding: 1.5rem;
+    }
+    .tab-content {
+        padding: 2rem;
+    }
+    .reminder-form {
+        grid-template-columns: 1fr 1fr;
+    }
+    .chat-container {
+        height: 500px;
+    }
+    .exercise-card {
+        margin-bottom: 2rem;
+    }
+}
     </style>
 </head>
 <body>
@@ -926,7 +1011,7 @@
     </header>
     
     <div class="container">
-        <a href="index.html" class="back-button"><i class="fas fa-arrow-left"></i> العودة إلى الصفحة الرئيسية</a>
+        <a href="home.html" class="back-button"><i class="fas fa-arrow-left"></i> العودة إلى الصفحة الرئيسية</a>
         <div class="tabs">
             <div class="tab active" data-tab="reminders"><i class="fas fa-bell"></i> التذكيرات</div>
             <div class="tab" data-tab="chat"><i class="fas fa-comment-dots"></i> المساعد الشخصي</div>
