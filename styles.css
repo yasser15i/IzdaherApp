@@ -162,3 +162,64 @@ header::before {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
+/* استعلامات الوسائط لتنسيق الصفحة على جميع الأجهزة */
+
+/* الأجهزة الصغيرة (الجوالات) */
+@media (max-width: 576px) {
+    body {
+        font-size: 14px;
+    }
+    .container {
+        padding: 0.5rem;
+    }
+    .tips-box, .marketing {
+        padding: 1rem;
+    }
+    .tips-box h2, .marketing p {
+        font-size: 1.2rem;
+    }
+    .main-button {
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+    }
+}
+
+/* الأجهزة المتوسطة (الأجهزة اللوحية) */
+@media (min-width: 577px) and (max-width: 768px) {
+    body {
+        font-size: 16px;
+    }
+    .container {
+        padding: 1rem;
+    }
+    .tips-box, .marketing {
+        padding: 1.5rem;
+    }
+    .tips-box h2, .marketing p {
+        font-size: 1.4rem;
+    }
+    .main-button {
+        padding: 0.75rem 1.5rem;
+        font-size: 1.1rem;
+    }
+}
+
+/* الأجهزة الكبيرة (أجهزة الكمبيوتر) */
+@media (min-width: 769px) {
+    body {
+        font-size: 18px;
+    }
+    .container {
+        padding: 1.5rem;
+    }
+    .tips-box, .marketing {
+        padding: 2rem;
+    }
+    .tips-box h2, .marketing p {
+        font-size: 1.6rem;
+    }
+    .main-button {
+        padding: 1rem 2rem;
+        font-size: 1.2rem;
+    }
+}
