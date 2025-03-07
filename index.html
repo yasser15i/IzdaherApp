@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ازدهر - مساعد شخصي للأشخاص المصابين بالزهايمر</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #6a5acd; /* أرجواني */
+            --secondary-color: #4169e1; /* أزرق ملكي */
+            --light-color: #e6e6fa; /* لون فاتح */
+            --dark-color: #483d8b; /* أرجواني داكن */
+            --white-color: #ffffff;
+            --text-color: #333333;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --info-color: #17a2b8;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            direction: rtl;
+        }
+        
+        header {
+            background: linear-gradient(to left, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+            animation: shine 8s linear infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes shine {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            animation: pulse 2s infinite;
+            display: inline-block;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .tabs {
+            display: flex;
+            margin: 1rem 0;
+            background-color: var(--white-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .tab:hover {
+            background-color: rgba(106, 90, 205, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .tab.active {
+            background-color: var(--primary-color);
+            color: white;
+            box-shadow: 0 2px 10px rgba(106, 90, 205, 0.3);
+            transform: translateY(-3px);
+        }
+        
+        .tab-content {
+            display: none;
+            background-color: var(--white-color);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.5s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--light-color);
+            padding-bottom: 0.5rem;
+            position: relative;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            right: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary-color);
+            animation: expand 1.5s ease-in-out infinite alternate;
+        }
+        
+        @keyframes expand {
+            from { width: 50px; }
+            to { width: 100px; }
+        }
+        
+        .reminder-form {
+            margin-bottom: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            animation: slideIn 0.5s ease-in-out;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @media (max-width: 768px) {
+            .reminder-form {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(106, 90, 205, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        button {
+            background: linear-gradient(to left, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+        
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(30, 30);
+                opacity: 0;
+            }
+        }
+        
+        button:hover {
+            background: linear-gradient(to left, var(--dark-color), var(--primary-color));
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(106, 90, 205, 0.3);
+        }
+        
+        button:active::after {
+            animation: ripple 0.6s ease-out;
+        }
+        
+        .reminder-list {
+            margin-top: 1rem;
+        }
+        
+        .reminder-item {
+            background-color: var(--white-color);
+            border-right: 4px solid var(--primary-color);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            animation: slideUp 0.5s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .reminder-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to left, rgba(106, 90, 205, 0.05), transparent);
+            transform: translateX(100%);
+            transition: transform 0.5s ease-in-out;
+        }
+        
+        .reminder-item:hover::before {
+            transform: translateX(0);
+        }
+        
+        .reminder-item:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-3px) scale(1.01);
+        }
+        
+        .reminder-item.medicine {
+            border-right-color: #ff7675;
+        }
+        
+        .reminder-item.appointment {
+            border-right-color: #74b9ff;
+        }
+        
+        .reminder-item.task {
+            border-right-color: #55efc4;
+        }
+        
+        .reminder-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .reminder-actions button {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            height: 500px;
+            background-color: var(--white-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-color) var(--light-color);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chat-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .chat-messages::-webkit-scrollbar-track {
+            background: var(--light-color);
+        }
+        
+        .chat-messages::-webkit-scrollbar-thumb {
+            background-color: var(--primary-color);
+            border-radius: 10px;
+        }
+        
+        .message {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-radius: 10px;
+            max-width: 80%;
+            animation: messageIn 0.3s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        @keyframes messageIn {
+            from { transform: translateY(10px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .user-message {
+            background-color: var(--secondary-color);
+            color: white;
+            align-self: flex-end;
+            margin-left: auto;
+            border-bottom-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+        
+        .bot-message {
+            background-color: var(--light-color);
+            align-self: flex-start;
+            border-bottom-right-radius: 20px;
+            border-top-left-radius: 20px;
+        }
+        
+        .chat-input {
+            display: flex;
+            padding: 1rem;
+            background-color: #f9f9f9;
+            border-top: 1px solid #ddd;
+        }
+        
+        .chat-input input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            font-size: 1rem;
+            margin-right: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .chat-input input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(106, 90, 205, 0.2);
+        }
+        
+        .chat-input button {
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+        }
+        
+        .chat-input button.voice-btn {
+            background: linear-gradient(to left, #ff7675, #ff4757);
+            margin-right: 0.5rem;
+        }
+        
+        .chat-input button.voice-btn:hover {
+            background: linear-gradient(to left, #d63031, #e84118);
+        }
+        
+        .chat-input button.voice-btn.recording {
+            animation: pulse-recording 1s infinite;
+            background: #d63031;
+        }
+        
+        @keyframes pulse-recording {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(214, 48, 49, 0.7); }
+            70% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(214, 48, 49, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(214, 48, 49, 0); }
+        }
+
+        .exercises-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        .exercise-card {
+            background-color: var(--white-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: cardIn 0.5s ease-in-out;
+        }
+        
+        @keyframes cardIn {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        .exercise-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(106, 90, 205, 0.2);
+        }
+        
+        .exercise-header {
+            background: linear-gradient(to left, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .exercise-header::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 5px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.5), transparent);
+            animation: slide 2s infinite linear;
+        }
+        
+        @keyframes slide {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .exercise-body {
+            padding: 1.5rem;
+        }
+        
+        .exercise-footer {
+            padding: 1rem;
+            text-align: center;
+            background-color: #f9f9f9;
+            border-top: 1px solid #eee;
+        }
+        
+        .settings-form {
+            background-color: var(--white-color);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        .settings-section {
+            margin-bottom: 2rem;
+            animation: slideIn 0.5s ease-in-out;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        input:checked + .slider {
+            background-color: var(--primary-color);
+        }
+        
+        input:focus + .slider {
+            box-shadow: 0 0 1px var(--primary-color);
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        
+        .setting-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+            transition: all 0.3s ease;
+        }
+        
+        .setting-item:hover {
+            background-color: rgba(106, 90, 205, 0.05);
+            padding-right: 0.5rem;
+            border-radius: 5px;
+        }
+        
+        .setting-item:last-child {
+            border-bottom: none;
+        }
+        
+        .family-share {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .family-share {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s forwards;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .alert {
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            animation: alertSlideDown 0.5s forwards, alertFadeOut 0.5s 3s forwards;
+            display: flex;
+            align-items: center;
+            min-width: 300px;
+        }
+        
+        @keyframes alertSlideDown {
+            from {
+                transform: translate(-50%, -100%);
+                opacity: 0;
+            }
+            to {
+                transform: translate(-50%, 0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes alertFadeOut {
+            from {
+                opacity: 1;
+                transform: translate(-50%, 0);
+            }
+            to {
+                opacity: 0;
+                transform: translate(-50%, -20px);
+            }
+        }
+        
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border-right: 4px solid #28a745;
+        }
+        
+        .alert-warning {
+            background-color: #fff3cd;
+            color: #856404;
+            border-right: 4px solid #ffc107;
+        }
+        
+        .alert i {
+            margin-left: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .icon-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 9999;
+            transition: opacity 0.5s ease-in-out;
+        }
+        
+        .loading-spinner {
+            width: 100px;
+            height: 100px;
+            border: 10px solid var(--light-color);
+            border-radius: 50%;
+            border-top: 10px solid var(--primary-color);
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .reminder-details {
+            margin-top: 0.5rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .reminder-details span {
+            display: flex;
+            align-items: center;
+            background-color: var(--light-color);
+            padding: 0.3rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .reminder-details span i {
+            margin-left: 5px;
+        }
+        
+        .reminder-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        .reminder-notes {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .family-code {
+            background-color: var(--light-color);
+            padding: 1rem;
+            border-radius: 5px;
+            text-align: center;
+            letter-spacing: 5px;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+        
+        .copy-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+        
+        .exercise-btn {
+            margin-top: 1rem;
+        }
+        
+        .congratulation {
+            text-align: center;
+            margin-top: 1rem;
+            font-weight: bold;
+            color: var(--success-color);
+        }
+        .game-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--white-color);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 10000;
+    text-align: center;
+}
+
+.game-container h2 {
+    margin-bottom: 1rem;
+}
+
+.game-container button {
+    margin-top: 1rem;
+}
+.memory-game {
+    width: 640px;
+    height: 640px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+.memory-card {
+    width: calc(25% - 10px);
+    height: calc(33.333% - 10px);
+    position: relative;
+    transform: scale(1);
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+    margin-bottom: 10px;
+}
+
+.memory-card.flip {
+    transform: rotateY(180deg);
+}
+
+.memory-card .front-face,
+.memory-card .back-face {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    border-radius: 5px;
+}
+
+.memory-card .front-face {
+    transform: rotateY(180deg);
+}
+
+.memory-card .back-face {
+    background: #2e3d49;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} 
+.memory-game {
+    width: 640px;
+    height: 640px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+.memory-card {
+    width: calc(25% - 10px);
+    height: calc(33.333% - 10px);
+    position: relative;
+    transform: scale(1);
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+    margin-bottom: 10px;
+}
+
+.memory-card.flip {
+    transform: rotateY(180deg);
+}
+
+.memory-card .front-face,
+.memory-card .back-face {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    border-radius: 5px;
+}
+
+.memory-card .front-face {
+    transform: rotateY(180deg);
+}
+
+.memory-card .back-face {
+    background: #2e3d49;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.back-button {
+    display: inline-block;
+    margin: 1rem 0;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(to left, var(--primary-color), var(--secondary-color));
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background: linear-gradient(to left, var(--dark-color), var(--primary-color));
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(106, 90, 205, 0.3);
+}
+
+.back-button i {
+    margin-left: 0.5rem;
+}
+    </style>
+</head>
+<body>
+    <!-- شاشة التحميل -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">جاري تحميل ازدهر...</div>
+    </div>
+
+    <script>
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loading-overlay').style.display = 'none';
+            }, 2000); // مدة التحميل 5 ثواني
+        });
+    </script>
+
+    <!-- تنبيه للعناصر المضافة -->
+    <div class="alert alert-success" id="alert" style="display: none;">
+        <i class="fas fa-check-circle"></i>
+        <span id="alert-message"></span>
+    </div>
+    
+    <header>
+        <div class="logo"><i class="fas fa-brain icon-float"></i> ازدهر</div>
+        <p>مساعد شخصي للأشخاص المصابين بالزهايمر</p>
+    </header>
+    
+    <div class="container">
+        <a href="home.html" class="back-button"><i class="fas fa-arrow-left"></i> العودة إلى الصفحة الرئيسية</a>
+        <div class="tabs">
+            <div class="tab active" data-tab="reminders"><i class="fas fa-bell"></i> التذكيرات</div>
+            <div class="tab" data-tab="chat"><i class="fas fa-comment-dots"></i> المساعد الشخصي</div>
+            <div class="tab" data-tab="exercises"><i class="fas fa-dumbbell"></i> تمارين الذاكرة</div>
+            <div class="tab" data-tab="settings"><i class="fas fa-cog"></i> الإعدادات</div>
+            <div class="tab" data-tab="tips"><i class="fas fa-lightbulb"></i> النصائح</div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
+
+                this.classList.add('active');
+                document.getElementById(this.getAttribute('data-tab')).classList.add('active');
+            });
+        });
+    </script>
+        
+        <!-- قسم التذكيرات -->
+        <div class="tab-content active" id="reminders">
+            <h2><i class="fas fa-plus-circle"></i> إضافة تذكير جديد</h2>
+            <form class="reminder-form" id="reminder-form">
+                <div class="form-group fade-in" style="animation-delay: 0.1s;">
+                    <label for="reminder-title">عنوان التذكير</label>
+                    <input type="text" id="reminder-title" placeholder="مثال: تناول الدواء، موعد الطبيب">
+                </div>
+                
+                <div class="form-group fade-in" style="animation-delay: 0.2s;">
+                    <label for="reminder-type">نوع التذكير</label>
+                    <select id="reminder-type">
+                        <option value="medicine">دواء</option>
+                        <option value="appointment">موعد</option>
+                        <option value="task">مهمة</option>
+                    </select>
+                </div>
+                
+                <div class="form-group fade-in" style="animation-delay: 0.3s;">
+                    <label for="reminder-date">التاريخ</label>
+                    <input type="date" id="reminder-date">
+                </div>
+                
+                <div class="form-group fade-in" style="animation-delay: 0.4s;">
+                    <label for="reminder-time">الوقت</label>
+                    <input type="time" id="reminder-time">
+                </div>
+                
+                <div class="form-group fade-in" style="animation-delay: 0.5s;">
+                    <label for="reminder-repeat">التكرار</label>
+                    <select id="reminder-repeat">
+                        <option value="none">بدون تكرار</option>
+                        <option value="daily">يومي</option>
+                        <option value="weekly">أسبوعي</option>
+                        <option value="monthly">شهري</option>
+                    </select>
+                </div>
+                
+                <div class="form-group fade-in" style="animation-delay: 0.6s;">
+                    <label for="reminder-notes">ملاحظات</label>
+                    <textarea id="reminder-notes" rows="3" placeholder="تفاصيل إضافية..."></textarea>
+                </div>
+                
+                <div class="form-group fade-in" style="animation-delay: 0.7s; grid-column: 1 / -1;">
+                    <button type="button" id="add-reminder"><i class="fas fa-plus"></i> إضافة التذكير</button>
+                </div>
+            </form>
+            
+            <h2><i class="fas fa-list"></i> قائمة التذكيرات</h2>
+            <div class="reminder-list" id="reminder-list">
+                <!-- ستتم إضافة التذكيرات هنا بشكل ديناميكي -->
+            </div>
+        </div>
+        
+        <!-- قسم المساعد الشخصي -->
+        <div class="tab-content" id="chat">
+            <h2><i class="fas fa-robot"></i> المساعد الشخصي</h2>
+            <div class="chat-container">
+                <div class="chat-messages" id="chat-messages">
+                    <div class="message bot-message">
+                        مرحباً! أنا مساعدك الشخصي. كيف يمكنني مساعدتك اليوم؟
+                    </div>
+                </div>
+                <div class="chat-input">
+                    <button class="voice-btn" id="voice-btn"><i class="fas fa-microphone"></i></button>
+                    <input type="text" id="chat-input-text" placeholder="اكتب رسالتك هنا...">
+                    <button id="send-message-btn"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+        
+      <!-- قسم تمارين الذاكرة -->
+<div class="tab-content active" id="exercises">
+    <h2><i class="fas fa-brain"></i> تمارين الذاكرة</h2>
+    <div class="exercises-container">
+    <!-- تمرين 1 -->
+    <div class="exercise-card">
+        <div class="exercise-header">
+        <h3>لعبة الذاكرة</h3>
+        </div>
+        <div class="exercise-body">
+        <p>حاول تذكر أماكن الصور المتطابقة في أقل وقت ممكن.</p>
+        <button class="exercise-btn" onclick="startMemoryGame()">ابدأ اللعبة</button>
+        </div>
+    </div>
+    <!-- تمرين 2 -->
+    <div class="exercise-card">
+        <div class="exercise-header">
+        <h3>تحدي الكلمات</h3>
+        </div>
+        <div class="exercise-body">
+        <p>اكتب أكبر عدد ممكن من الكلمات التي تبدأ بحرف معين خلال دقيقة واحدة.</p>
+        <button class="exercise-btn" onclick="startWordChallenge()">ابدأ التحدي</button>
+        </div>
+    </div>
+    </div>
+</div>
+<script>
+    function startMemoryGame() {
+    alert('لعبة الذاكرة ستبدأ الآن!');
+    // هنا يمكنك إضافة كود اللعبة الفعلي
+    }
+
+    function startWordChallenge() {
+    alert('تحدي الكلمات سيبدأ الآن!');
+    // هنا يمكنك إضافة كود التحدي الفعلي
+    }
+</script>
+        <!-- قسم الإعدادات -->
+        <div class="tab-content" id="settings">
+            <h2><i class="fas fa-cog"></i> الإعدادات</h2>
+            <form class="settings-form">
+                <div class="settings-section">
+                    <h3>تسجيل جديد</h3>
+                    <div class="form-group">
+                        <label for="register-username">اسم المستخدم</label>
+                        <input type="text" id="register-username" placeholder="أدخل اسم المستخدم">
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">كلمة المرور</label>
+                        <input type="password" id="register-password" placeholder="أدخل كلمة المرور">
+                    </div>
+                    <div class="form-group">
+                        <button type="button" id="register-btn"><i class="fas fa-user-plus"></i> تسجيل جديد</button>
+                    </div>
+                </div>
+                <div class="settings-section">
+                    <h3>تسجيل دخول</h3>
+                    <div class="form-group">
+                        <label for="login-username">اسم المستخدم</label>
+                        <input type="text" id="login-username" placeholder="أدخل اسم المستخدم">
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">كلمة المرور</label>
+                        <input type="password" id="login-password" placeholder="أدخل كلمة المرور">
+                    </div>
+                    <div class="form-group">
+                        <button type="button" id="login-btn"><i class="fas fa-sign-in-alt"></i> تسجيل دخول</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- قسم النصائح -->
+        <div class="tab-content" id="tips">
+            <h2><i class="fas fa-lightbulb"></i> نصائح لمرضى الزهايمر والخرف والنسيان</h2>
+            <div class="tips-container">
+                <div class="tip">
+                    <h3>نصيحة 1</h3>
+                    <p>حافظ على نشاطك الذهني من خلال ممارسة الألعاب الذهنية والقراءة.</p>
+                </div>
+                <div class="tip">
+                    <h3>نصيحة 2</h3>
+                    <p>تناول غذاء صحي ومتوازن يحتوي على الفواكه والخضروات.</p>
+                </div>
+                <div class="tip">
+                    <h3>نصيحة 3</h3>
+                    <p>احرص على ممارسة التمارين الرياضية بانتظام لتحسين الدورة الدموية.</p>
+                </div>
+                <div class="tip">
+                    <h3>نصيحة 4</h3>
+                    <p>حافظ على التواصل الاجتماعي مع الأصدقاء والعائلة.</p>
+                </div>
+                <div class="tip">
+                    <h3>نصيحة 5</h3>
+                    <p>احصل على قسط كافٍ من النوم والراحة.</p>
+                </div>
+                <div class="tip">
+                    <h3>نصيحة 6</h3>
+                    <p>تجنب التوتر والقلق من خلال ممارسة التأمل والاسترخاء.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('register-btn').addEventListener('click', function() {
+            const username = document.getElementById('register-username').value;
+            const password = document.getElementById('register-password').value;
+            if (username && password) {
+                alert('تم التسجيل بنجاح!');
+            } else {
+                alert('يرجى ملء جميع الحقول!');
+            }
+        });
+
+        document.getElementById('login-btn').addEventListener('click', function() {
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+            if (username && password) {
+                alert('تم تسجيل الدخول بنجاح!');
+            } else {
+                alert('يرجى ملء جميع الحقول!');
+            }
+        });   
+    </script>
+<script>
+    document.getElementById('add-reminder').addEventListener('click', function() {
+        const title = document.getElementById('reminder-title').value;
+        const type = document.getElementById('reminder-type').value;
+        const date = document.getElementById('reminder-date').value;
+        const time = document.getElementById('reminder-time').value;
+        const repeat = document.getElementById('reminder-repeat').value;
+        const notes = document.getElementById('reminder-notes').value;
+
+        if (title && date && time) {
+            const reminderList = document.getElementById('reminder-list');
+            const reminderItem = document.createElement('div');
+            reminderItem.className = `reminder-item ${type}`;
+            reminderItem.innerHTML = `
+                <div>
+                    <div class="reminder-title">${title}</div>
+                    <div class="reminder-details">
+                        <span><i class="fas fa-calendar-alt"></i> ${date}</span>
+                        <span><i class="fas fa-clock"></i> ${time}</span>
+                        ${repeat !== 'none' ? `<span><i class="fas fa-redo"></i> ${repeat}</span>` : ''}
+                        ${notes ? `<span><i class="fas fa-sticky-note"></i> ${notes}</span>` : ''}
+                    </div>
+                </div>
+                <div class="reminder-actions">
+                    <button onclick="deleteReminder(this)"><i class="fas fa-trash"></i> حذف</button>
+                </div>
+            `;
+            reminderList.appendChild(reminderItem);
+
+            // Reset form
+            document.getElementById('reminder-form').reset();
+
+            // Show success alert
+            showAlert('تم إضافة التذكير بنجاح!', 'success');
+        } else {
+            showAlert('يرجى ملء جميع الحقول المطلوبة!', 'warning');
+        }
+    });
+
+    function deleteReminder(button) {
+        const reminderItem = button.closest('.reminder-item');
+        reminderItem.remove();
+        showAlert('تم حذف التذكير بنجاح!', 'success');
+    }
+
+    function showAlert(message, type) {
+        const alert = document.getElementById('alert');
+        alert.className = `alert alert-${type}`;
+        document.getElementById('alert-message').textContent = message;
+        alert.style.display = 'flex';
+        setTimeout(() => {
+            alert.style.display = 'none';
+        }, 3000);
+    }
+</script>
+<script>
+    function startMemoryGame() {
+        const gameContainer = document.createElement('div');
+        gameContainer.className = 'game-container';
+        gameContainer.innerHTML = `
+            <h2>لعبة الذاكرة</h2>
+            <div class="memory-game">
+                <!-- هنا يمكنك إضافة كود اللعبة الفعلي -->
+                <p>لعبة الذاكرة قيد التطوير...</p>
+            </div>
+            <button onclick="closeGame()">إغلاق اللعبة</button>
+        `;
+        document.body.appendChild(gameContainer);
+    }
+
+    function startWordChallenge() {
+        const gameContainer = document.createElement('div');
+        gameContainer.className = 'game-container';
+        gameContainer.innerHTML = `
+            <h2>تحدي الكلمات</h2>
+            <div class="word-challenge">
+                <!-- هنا يمكنك إضافة كود التحدي الفعلي -->
+                <p>تحدي الكلمات قيد التطوير...</p>
+            </div>
+            <button onclick="closeGame()">إغلاق التحدي</button>
+        `;
+        document.body.appendChild(gameContainer);
+    }
+
+    function closeGame() {
+        const gameContainer = document.querySelector('.game-container');
+        if (gameContainer) {
+            gameContainer.remove();
+        }
+    }
+</script>
+<script>
+    function startMemoryGame() {
+        // عرض شاشة التحميل
+        document.getElementById('loading-overlay').style.display = 'flex';
+
+        // بعد 3 ثواني، إخفاء شاشة التحميل وبدء اللعبة
+        setTimeout(function() {
+            document.getElementById('loading-overlay').style.display = 'none';
+
+            const gameContainer = document.createElement('div');
+            gameContainer.className = 'game-container';
+            gameContainer.innerHTML = `
+                <h2>لعبة الذاكرة</h2>
+                <div class="memory-game">
+                    <div class="memory-card" data-framework="aurelia">
+                        <img class="front-face" src="img/aurelia.svg" alt="Aurelia" />
+                        <img class="back-face" src="img/js-badge.svg" alt="JS Badge" />
+                    </div>
+                    <div class="memory-card" data-framework="aurelia">
+                        <img class="front-face" src="img/aurelia.svg" alt="Aurelia" />
+                        <img class="back-face" src="img/js-badge.svg" alt="JS Badge" />
+                    </div>
+                    <div class="memory-card" data-framework="angular">
+                        <img class="front-face" src="img/angular.svg" alt="Angular" />
+                        <img class="back-face" src="img/js-badge.svg" alt="JS Badge" />
+                    </div>
+                    <div class="memory-card" data-framework="angular">
+                        <img class="front-face" src="img/angular.svg" alt="Angular" />
+                        <img class="back-face" src="img/js-badge.svg" alt="JS Badge" />
+                    </div>
+                    <div class="memory-card" data-framework="vue">
+                        <img class="front-face" src="img/vue.svg" alt="Vue" />
+                        <img class="back-face" src="img/js-badge.svg" alt="JS Badge" />
+                    </div>
+                    <div class="memory-card" data-framework="vue">
+                        <img class="front-face" src="img/vue.svg" alt="Vue" />
+                        <img class="back-face" src="img/js-badge.svg" alt="JS Badge" />
+                    </div>
+                    <div class="memory-card" data-framework="react">
+                        <img class="front-face" src="img/react.svg" alt="React" />
+                        <img class="back-face" src="img/js-badge.svg" alt="JS Badge" />
+                    </div>
+                    <div class="memory-card" data-framework="react">
+                        <img class="front-face" src="img/react.svg" alt="React" />
+                        <img class="back-face" src="img/js-badge.svg" alt="JS Badge" />
+                    </div>
+                </div>
+                <button onclick="closeGame()">إغلاق اللعبة</button>
+            `;
+            document.body.appendChild(gameContainer);
+
+            const cards = document.querySelectorAll('.memory-card');
+            let hasFlippedCard = false;
+            let lockBoard = false;
+            let firstCard, secondCard;
+
+            function flipCard() {
+                if (lockBoard) return;
+                if (this === firstCard) return;
+
+                this.classList.add('flip');
+
+                if (!hasFlippedCard) {
+                    hasFlippedCard = true;
+                    firstCard = this;
+                    return;
+                }
+
+                secondCard = this;
+                checkForMatch();
+            }
+
+            function checkForMatch() {
+                let isMatch = firstCard.dataset.framework === secondCard.dataset.framework;
+                isMatch ? disableCards() : unflipCards();
+            }
+
+            function disableCards() {
+                firstCard.removeEventListener('click', flipCard);
+                secondCard.removeEventListener('click', flipCard);
+
+                resetBoard();
+            }
+
+            function unflipCards() {
+                lockBoard = true;
+
+                setTimeout(() => {
+                    firstCard.classList.remove('flip');
+                    secondCard.classList.remove('flip');
+
+                    resetBoard();
+                }, 1500);
+            }
+
+            function resetBoard() {
+                [hasFlippedCard, lockBoard] = [false, false];
+                [firstCard, secondCard] = [null, null];
+            }
+
+            (function shuffle() {
+                cards.forEach(card => {
+                    let randomPos = Math.floor(Math.random() * 12);
+                    card.style.order = randomPos;
+                });
+            })();
+
+            cards.forEach(card => card.addEventListener('click', flipCard));
+        }, 3000); // مدة التحميل 3 ثواني
+    }
+
+    function closeGame() {
+        const gameContainer = document.querySelector('.game-container');
+        if (gameContainer) {
+            gameContainer.remove();
+        }
+    }
+</script>
+</body>
+</html>
