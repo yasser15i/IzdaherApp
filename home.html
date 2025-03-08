@@ -95,11 +95,16 @@
 
         .hero {
             margin-top: 80px;
-            background: linear-gradient(rgba(102, 20, 184, 0.9), rgba(132, 66, 201, 0.9)), url('https://labayh.net/ar/wp-content/uploads/2020/12/hero-bg.jpg');
+            background: linear-gradient(rgba(102, 20, 184, 0.7), rgba(102, 20, 184, 0.7)), url('https://qafilah.com/ar/wp-content/uploads/2015/11/aziz-bagshi-9.jpg'); /* استبدل الرابط برابط الصورة المناسبة */
             background-size: cover;
+            background-position: center;
             padding: 6rem 2rem;
             text-align: center;
             color: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 2rem auto;
         }
 
         .hero-content {
@@ -108,13 +113,13 @@
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 2.5rem;
             font-weight: 900;
             margin-bottom: 1.5rem;
         }
 
         .hero p {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             margin-bottom: 2rem;
             line-height: 1.6;
         }
@@ -400,6 +405,159 @@
         [data-theme="dark"] .theme-toggle i.fa-moon {
             color: #ffd700;
         }
+
+        .footer-section {
+            background: #6614b8;
+            color: #ffffff;
+            padding: 2rem 0;
+        }
+
+        .footer-section .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-logo img {
+            max-width: 50px;
+        }
+
+        .footer-logo span {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-links a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #2C3E50;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social a {
+            color: #ffffff;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            color: #2C3E50;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .footer-links {
+                margin-top: 1rem;
+            }
+
+            .footer-social {
+                margin-top: 1rem;
+            }
+        }
+
+        .highlight {
+            background: rgba(102, 20, 184, 0.1); /* لون شبه شفاف أكثر */
+            color: var(--text-color); /* تغيير لون النص إلى الأسود */
+            padding: 4rem 2rem;
+            text-align: center;
+            margin: 2rem auto;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-width: 800px; /* تحديد عرض المربع */
+        }
+
+        .highlight-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .highlight h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            background: var(--white);
+            color: var(--text-color); /* تغيير لون النص إلى الأسود */
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .cta-button img {
+            margin-left: 8px; /* تغيير من margin-right إلى margin-left */
+        }
+
+        .cta-button:hover {
+            background: var(--secondary-color);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(132, 66, 201, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .highlight h1 {
+                font-size: 2rem;
+            }
+
+            .highlight p {
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -423,9 +581,22 @@
 
     <section class="hero">
         <div class="hero-content">
-            <h1>مساعدك الشخصي للتغلب على الزهايمر</h1>
+            <h1>لا تقــــــــول ليــــــــــــه</h1>
+            <h1>فيـــــــــه ، ازدهــــــــــــر</h1>
+            <p>مساعدك الشخصي للتعايش مع الزهايمر بكل خصوصية</p>
             <p>نساعدك على تنظيم حياتك اليومية وتذكيرك بالمواعيد الهامة بطريقة سهلة وفعالة</p>
             <a href="index.html" class="cta-button">ابدأ رحلتك مع ازدهر</a>
+        </div>
+    </section>
+
+    <section class="highlight">
+        <div class="highlight-content">
+            <h1>خصوصية. جودة. أمان</h1>
+            <p>مساعدك الشخصي على مدار الساعة ، بأمان وخصوصية ، يقدمها لك أفضل المعالجين والمحترفين والطورين بالمجال.</p>
+            <a href="https://github.com/yasser15i" class="cta-button">
+                <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub" style="width: 30px; height: 30px; vertical-align: middle; margin-left: 8px;">
+                حمل التطبيق الآن
+            </a>
         </div>
     </section>
 
@@ -473,6 +644,31 @@
             </form>
         </div>
     </section>
+
+    <footer class="footer-section">
+        <div class="container">
+                <div class="footer-logo">
+                    <div class="logo"><i class="fas fa-brain icon-float"></i> ازدهر</div>
+                    <span>ازدهر</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#features">المميزات</a>
+                    <a href="#about">عن ازدهر</a>
+                    <a href="#contact">تواصل معنا</a>
+                    <a href="index.html">ابدأ الآن</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025  ازدهر. جميع الحقوق محفوظة. للبشمبرمج يويسر</p>
+            </div>
+        </div>
+    </footer>
 
     <script>
         const menuToggle = document.querySelector('.menu-toggle');
