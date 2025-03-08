@@ -21,6 +21,13 @@
             --danger-color: #dc3545;
             --info-color: #17a2b8;
         }
+
+        [data-theme="dark"] {
+            --light-color: #1a1a1a;
+            --white-color: #2d2d2d;
+            --text-color: #e1e1e1;
+            --accent-color: #8442c9;
+        }
         
         * {
             box-sizing: border-box;
@@ -1022,6 +1029,28 @@
         height: calc(33.333% - 10px);
     }
 }
+    .theme-toggle {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        cursor: pointer;
+        padding: 0.5rem;
+        font-size: 1.2rem;
+        color: var(--white-color);
+        transition: transform 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+        transform: scale(1.1);
+    }
+
+    .theme-toggle i {
+        transition: transform 0.3s ease;
+    }
+
+    [data-theme="dark"] .theme-toggle i.fa-moon {
+        color: #ffd700;
+    }
     </style>
 </head>
 <body>
@@ -1047,6 +1076,9 @@
     
     <header>
         <div class="logo"><i class="fas fa-brain icon-float"></i> ازدهر</div>
+        <div class="theme-toggle">
+            <i class="fas fa-moon"></i>
+        </div>
         <p>مساعد شخصي للأشخاص المصابين بالزهايمر</p>
     </header>
     
@@ -1589,6 +1621,34 @@
 
         // إعادة تعيين حقل الإدخال
         document.getElementById('chat-input-text').value = '';
+    });
+</script>
+<script>
+    const themeToggle = document.querySelector('.theme-toggle');
+    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    
+    // التحقق من وجود تفضيل مخزن
+    const currentTheme = localStorage.getItem('theme');
+    if (currentTheme) {
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        if (currentTheme === 'dark') {
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        } else {
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+    }
+
+    themeToggle.addEventListener('click', () => {
+        let theme = document.documentElement.getAttribute('data-theme');
+        if (theme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        } else {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        }
     });
 </script>
 </body>
