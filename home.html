@@ -767,6 +767,65 @@
                 padding: 1.5rem;
             }
         }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-box {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(102, 20, 184, 0.2);
+        }
+
+        .feature-box i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-box h3 {
+            font-size: 1.5rem;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .feature-box p {
+            color: var(--text-color);
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .about-features {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .feature-box {
+                padding: 1.5rem;
+            }
+            
+            .feature-box h3 {
+                font-size: 1.3rem;
+            }
+            
+            .feature-box p {
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -838,21 +897,24 @@
                 <div class="about-text">
                     <p>ازدهر هو تطبيق مبتكر يهدف إلى مساعدة الأشخاص المصابين بمرض الزهايمر وعائلاتهم في التعايش مع المرض بشكل أفضل.</p>
                     <p>نحن نؤمن بأن التكنولوجيا يمكن أن تلعب دوراً مهماً في تحسين جودة حياة المصابين بالزهايمر من خلال توفير أدوات سهلة الاستخدام للتذكير والمتابعة.</p>
-                    <div class="about-stats">
-                        <div class="stat-item">
-                            <i class="fas fa-users"></i>
-                            <h3>+0000</h3>
-                            <p>مستخدم نشط</p>
+                    
+                    <div class="about-features">
+                        <div class="feature-box">
+                            <i class="fas fa-brain"></i>
+                            <h3>تقنية متطورة</h3>
+                            <p>نستخدم أحدث تقنيات الذكاء الاصطناعي والتعلم الآلي لفهم وتحليل سلوك المستخدم وتقديم تجربة مخصصة تناسب احتياجاته</p>
                         </div>
-                        <div class="stat-item">
-                            <i class="fas fa-star"></i>
-                            <h3>0.0</h3>
-                            <p>تقييم التطبيق</p>
+                        
+                        <div class="feature-box">
+                            <i class="fas fa-shield-alt"></i>
+                            <h3>خصوصية تامة</h3>
+                            <p>نضمن حماية كاملة لبيانات المستخدمين ووصول في اي وقت وفي اي مكان</p>
                         </div>
-                        <div class="stat-item">
-                            <i class="fas fa-clock"></i>
-                            <h3>24/7</h3>
-                            <p>دعم متواصل</p>
+                        
+                        <div class="feature-box">
+                            <i class="fas fa-heart"></i>
+                            <h3>تجربة سلسة</h3>
+                            <p>واجهة سهلة الاستخدام مصممة خصيصاً لكبار السن مع دعم صوتي وتنبيهات ذكية تساعد في تنظيم الحياة اليومية</p>
                         </div>
                     </div>
                 </div>
