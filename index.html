@@ -844,48 +844,6 @@
     justify-content: center;
     align-items: center;
 } 
-.memory-game {
-    width: 640px;
-    height: 640px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin: 0 auto;
-}
-
-.memory-card {
-    width: calc(25% - 10px);
-    height: calc(33.333% - 10px);
-    position: relative;
-    transform: scale(1);
-    transform-style: preserve-3d;
-    transition: transform 0.5s;
-    margin-bottom: 10px;
-}
-
-.memory-card.flip {
-    transform: rotateY(180deg);
-}
-
-.memory-card .front-face,
-.memory-card .back-face {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    backface-visibility: hidden;
-    border-radius: 5px;
-}
-
-.memory-card .front-face {
-    transform: rotateY(180deg);
-}
-
-.memory-card .back-face {
-    background: #2e3d49;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 .back-button {
     display: inline-block;
     margin: 1rem 0;
@@ -1051,6 +1009,177 @@
     [data-theme="dark"] .theme-toggle i.fa-moon {
         color: #ffd700;
     }
+    /* أنماط الملف الشخصي */
+.profile-container {
+    display: grid;
+    gap: 2rem;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.profile-section {
+    background-color: var(--white-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.profile-avatar {
+    font-size: 5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.profile-name {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.profile-since {
+    color: #666;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: var(--light-color);
+    border-radius: 10px;
+}
+
+.stat-icon {
+    font-size: 2rem;
+    color: var(--primary-color);
+}
+
+.stat-info {
+    flex: 1;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0.5rem 0;
+}
+
+.progress-bar {
+    height: 6px;
+    background-color: #eee;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(to left, var(--primary-color), var(--secondary-color));
+    transition: width 0.3s ease;
+}
+
+.streak-calendar {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(30px, 1fr));
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.streak-day {
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: var(--light-color);
+}
+
+.streak-day.active {
+    background-color: var(--primary-color);
+}
+
+.streak-info {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1rem;
+}
+
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.achievement-card {
+    text-align: center;
+    padding: 1rem;
+    background-color: var(--light-color);
+    border-radius: 10px;
+    opacity: 0.5;
+}
+
+.achievement-card.achieved {
+    opacity: 1;
+    background: linear-gradient(to bottom right, var(--primary-color), var(--secondary-color));
+    color: white;
+}
+
+.achievement-card i {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .stats-grid,
+    .achievements-grid {
+        grid-template-columns: 1fr;
+    }
+}
+/* أنماط صندوق النصائح المتحرك */
+.tips-slider {
+    background: var(--white-color);
+    border-radius: 15px;
+    padding: 2rem;
+    margin: 2rem 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.tip-box {
+    text-align: center;
+    animation: fadeInOut 10s infinite;
+}
+
+.tip-icon {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    animation: floating 3s ease-in-out infinite;
+}
+
+.tip-text {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: var(--text-color);
+    margin-top: 1rem;
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0; transform: translateY(20px); }
+    10%, 90% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floating {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
     </style>
 </head>
 <body>
@@ -1085,11 +1214,12 @@
     <div class="container">
         <a href="home.html" class="back-button"><i class="fas fa-arrow-left"></i> العودة إلى الصفحة الرئيسية</a>
         <div class="tabs">
+            <div class="tab" data-tab="home"><i class="fas fa-home"></i> الرئيسية</div>
             <div class="tab active" data-tab="reminders"><i class="fas fa-bell"></i> التذكيرات</div>
             <div class="tab" data-tab="chat"><i class="fas fa-comment-dots"></i> المساعد الشخصي</div>
             <div class="tab" data-tab="exercises"><i class="fas fa-dumbbell"></i> تمارين الذاكرة</div>
             <div class="tab" data-tab="settings"><i class="fas fa-cog"></i> الإعدادات</div>
-            <div class="tab" data-tab="tips"><i class="fas fa-lightbulb"></i> النصائح</div>
+            <div class="tab" data-tab="profile"><i class="fas fa-user-circle"></i> الملف الشخصي</div>
         </div>
     </div>
 
@@ -1307,6 +1437,221 @@
             `;
             document.body.appendChild(gameContainer);
         }
+
+        function startWordChallenge() {
+            // إزالة أي نسخة سابقة من اللعبة
+            const existingGame = document.querySelector('.game-container');
+            if (existingGame) {
+                existingGame.remove();
+            }
+        
+            const gameContainer = document.createElement('div');
+            gameContainer.className = 'game-container';
+            gameContainer.innerHTML = `
+                <h2>تحدي الكلمات</h2>
+                <div class="word-challenge-content">
+                    <div class="game-info">
+                        <div class="timer">الوقت المتبقي: <span>60</span> ثانية</div>
+                        <div class="score">النقاط: <span>0</span></div>
+                    </div>
+                    <div class="current-letter">الحرف الحالي: <span>أ</span></div>
+                    <div class="word-input">
+                        <input type="text" placeholder="اكتب كلمة تبدأ بالحرف المعطى..." />
+                        <button class="submit-word">إدخال</button>
+                    </div>
+                    <div class="words-list"></div>
+                </div>
+                <button onclick="closeGame()" class="close-btn">إغلاق اللعبة</button>
+            `;
+        
+            document.body.appendChild(gameContainer);
+        
+            // تحديث الأنماط
+            const styles = document.createElement('style');
+            styles.textContent = `
+                .game-container {
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background-color: var(--white-color);
+                    padding: 2rem;
+                    border-radius: 10px;
+                    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+                    z-index: 10000;
+                    width: 90%;
+                    max-width: 800px;
+                    height: 80vh;
+                    overflow-y: auto;
+                }
+                .word-challenge-content {
+                    padding: 20px;
+                    text-align: center;
+                }
+                .game-info {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                    font-size: 1.2rem;
+                }
+                .current-letter {
+                    font-size: 2rem;
+                    margin-bottom: 20px;
+                    color: var(--primary-color);
+                }
+                .word-input {
+                    display: flex;
+                    gap: 10px;
+                    margin-bottom: 20px;
+                }
+                .word-input input {
+                    flex: 1;
+                    padding: 15px;
+                    border: 2px solid var(--primary-color);
+                    border-radius: 5px;
+                    font-size: 1.1rem;
+                }
+                .submit-word {
+                    padding: 15px 30px;
+                    font-size: 1.1rem;
+                }
+                .words-list {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 10px;
+                    justify-content: center;
+                    margin-top: 20px;
+                    padding: 20px;
+                }
+                .word-item {
+                    background: var(--primary-color);
+                    color: white;
+                    padding: 10px 20px;
+                    border-radius: 15px;
+                    animation: popIn 0.3s ease-out;
+                    font-size: 1.1rem;
+                }
+                .close-btn {
+                    margin-top: 20px;
+                    width: 100%;
+                    padding: 15px;
+                }
+                @keyframes popIn {
+                    from { transform: scale(0.8); opacity: 0; }
+                    to { transform: scale(1); opacity: 1; }
+                }
+                @media (max-width: 768px) {
+                    .game-container {
+                        width: 95%;
+                        height: 90vh;
+                        padding: 1rem;
+                    }
+                }
+            `;
+            document.head.appendChild(styles);
+        
+            // إضافة طبقة خلفية معتمة
+            const overlay = document.createElement('div');
+            overlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 9999;
+            `;
+            document.body.appendChild(overlay);
+        
+            // تحديث دالة الإغلاق
+            window.closeGame = function() {
+                gameContainer.remove();
+                overlay.remove();
+                if (styles) styles.remove();
+            };
+        
+            // باقي منطق اللعبة...
+            // (نفس الكود السابق للعبة)
+        
+            // إضافة منطق اللعبة
+            let timeLeft = 60;
+            let score = 0;
+            let usedWords = new Set();
+            const arabicLetters = ['أ', 'ب', 'ت', 'ث', 'ج', 'ح', 'خ', 'د', 'ذ', 'ر', 'ز', 'س', 'ش', 'ص', 'ض', 'ط', 'ظ', 'ع', 'غ', 'ف', 'ق', 'ك', 'ل', 'م', 'ن', 'ه', 'و', 'ي'];
+            let currentLetter = arabicLetters[Math.floor(Math.random() * arabicLetters.length)];
+            
+            const timerElement = gameContainer.querySelector('.timer span');
+            const scoreElement = gameContainer.querySelector('.score span');
+            const currentLetterElement = gameContainer.querySelector('.current-letter span');
+            const input = gameContainer.querySelector('input');
+            const submitButton = gameContainer.querySelector('.submit-word');
+            const wordsList = gameContainer.querySelector('.words-list');
+        
+            currentLetterElement.textContent = currentLetter;
+        
+            // بدء العد التنازلي
+            const timer = setInterval(() => {
+                timeLeft--;
+                timerElement.textContent = timeLeft;
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    endGame();
+                }
+            }, 1000);
+        
+            // التحقق من الكلمة المدخلة
+            function checkWord(word) {
+                if (!word) return false;
+                if (usedWords.has(word)) return false;
+                if (!word.startsWith(currentLetter)) return false;
+                return true;
+            }
+        
+            // إضافة كلمة جديدة
+            function addWord(word) {
+                const wordElement = document.createElement('div');
+                wordElement.className = 'word-item';
+                wordElement.textContent = word;
+                wordsList.appendChild(wordElement);
+                usedWords.add(word);
+                score += word.length;
+                scoreElement.textContent = score;
+            }
+        
+            // إنهاء اللعبة
+            function endGame() {
+                input.disabled = true;
+                submitButton.disabled = true;
+                alert(`انتهت اللعبة! مجموع نقاطك: ${score}`);
+            }
+        
+            // معالجة إدخال الكلمة
+            submitButton.addEventListener('click', () => {
+                const word = input.value.trim();
+                if (checkWord(word)) {
+                    addWord(word);
+                    input.value = '';
+                } else {
+                    alert('الكلمة غير صالحة أو مستخدمة مسبقاً');
+                }
+            });
+        
+            input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    submitButton.click();
+                }
+            });
+        }
+        
+        function closeGame() {
+    const gameContainer = document.querySelector('.game-container');
+    const overlay = document.querySelector('.overlay');
+    const styles = document.querySelector('#game-styles');
+    
+    if (gameContainer) gameContainer.remove();
+    if (overlay) overlay.remove();
+    if (styles) styles.remove();
+}
     </script>
         <!-- قسم الإعدادات -->
         <div class="tab-content" id="settings">
@@ -1342,36 +1687,112 @@
                 </div>
             </form>
         </div>
-        <!-- قسم النصائح -->
-        <div class="tab-content" id="tips">
-            <h2><i class="fas fa-lightbulb"></i> نصائح لمرضى الزهايمر والخرف والنسيان</h2>
-            <div class="tips-container">
-                <div class="tip">
-                    <h3>نصيحة 1</h3>
-                    <p>حافظ على نشاطك الذهني من خلال ممارسة الألعاب الذهنية والقراءة.</p>
+        <!-- قسم الملف الشخصي -->
+        <div class="tab-content" id="profile">
+            <h2><i class="fas fa-user-circle"></i> الملف الشخصي</h2>
+            <div class="profile-container">
+                <!-- معلومات المستخدم -->
+                <div class="profile-section user-info">
+                    <div class="profile-header">
+                        <i class="fas fa-user-circle profile-avatar"></i>
+                        <h3 class="profile-name">اسم المستخدم</h3>
+                        <p class="profile-since">عضو منذ: <span>8 مارس 2025</span></p>
+                    </div>
                 </div>
-                <div class="tip">
-                    <h3>نصيحة 2</h3>
-                    <p>تناول غذاء صحي ومتوازن يحتوي على الفواكه والخضروات.</p>
+
+                <!-- إحصائيات التمارين -->
+                <div class="profile-section stats">
+                    <h3><i class="fas fa-chart-line"></i> إحصائيات التمارين</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-brain"></i></div>
+                            <div class="stat-info">
+                                <h4>تمارين الذاكرة</h4>
+                                <p class="stat-value">24</p>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 75%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-font"></i></div>
+                            <div class="stat-info">
+                                <h4>تحدي الكلمات</h4>
+                                <p class="stat-value">156</p>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 60%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-calculator"></i></div>
+                            <div class="stat-info">
+                                <h4>تحدي الحساب</h4>
+                                <p class="stat-value">89</p>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 45%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="tip">
-                    <h3>نصيحة 3</h3>
-                    <p>احرص على ممارسة التمارين الرياضية بانتظام لتحسين الدورة الدموية.</p>
+
+                <!-- سجل التقدم -->
+                <div class="profile-section progress-tracker">
+                    <h3><i class="fas fa-calendar-check"></i> سجل النشاط</h3>
+                    <div class="streak-calendar">
+                        <!-- سيتم إضافة الأيام ديناميكياً -->
+                    </div>
+                    <div class="streak-info">
+                        <p class="current-streak">
+                            <i class="fas fa-fire"></i>
+                            التتابع الحالي: <span>7 أيام</span>
+                        </p>
+                        <p class="best-streak">
+                            <i class="fas fa-trophy"></i>
+                            أفضل تتابع: <span>15 يوم</span>
+                        </p>
+                    </div>
                 </div>
-                <div class="tip">
-                    <h3>نصيحة 4</h3>
-                    <p>حافظ على التواصل الاجتماعي مع الأصدقاء والعائلة.</p>
-                </div>
-                <div class="tip">
-                    <h3>نصيحة 5</h3>
-                    <p>احصل على قسط كافٍ من النوم والراحة.</p>
-                </div>
-                <div class="tip">
-                    <h3>نصيحة 6</h3>
-                    <p>تجنب التوتر والقلق من خلال ممارسة التأمل والاسترخاء.</p>
+
+                <!-- الإنجازات -->
+                <div class="profile-section achievements">
+                    <h3><i class="fas fa-medal"></i> الإنجازات</h3>
+                    <div class="achievements-grid">
+                        <div class="achievement-card achieved">
+                            <i class="fas fa-star"></i>
+                            <h4>المتفوق</h4>
+                            <p>أكمل 10 تمارين بنجاح</p>
+                        </div>
+                        <div class="achievement-card achieved">
+                            <i class="fas fa-fire"></i>
+                            <h4>المثابر</h4>
+                            <p>حافظ على تتابع 7 أيام</p>
+                        </div>
+                        <div class="achievement-card">
+                            <i class="fas fa-crown"></i>
+                            <h4>البطل</h4>
+                            <p>أكمل جميع التحديات</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+    <!-- قسم الرئيسية -->
+    <div class="tab-content" id="home">
+        <h2><i class="fas fa-home"></i> الصفحة الرئيسية</h2>
+        
+        <!-- صندوق النصائح المتحرك -->
+        <div class="tips-slider">
+            <div class="tip-box">
+                <i class="fas fa-lightbulb tip-icon"></i>
+                <h3>نصيحة اليوم</h3>
+                <p class="tip-text"></p>
+            </div>
+        </div>
+
+        <!-- باقي محتوى الصفحة الرئيسية هنا -->
     </div>
     <script>
         document.getElementById('register-btn').addEventListener('click', function() {
@@ -1451,121 +1872,48 @@
 </script>
 <script>
     function startMemoryGame() {
-        // عرض شاشة التحميل
-        document.getElementById('loading-overlay').style.display = 'flex';
+    const gameContainer = document.createElement('div');
+    gameContainer.className = 'game-container';
+    gameContainer.innerHTML = `
+        <header>
+            <h1>تحدي الذاكرة - ازدهر</h1>
+            <p>اختبر قوة ذاكرتك وسرعة بديهتك في هذا التحدي. تذكر مواقع الرموز المتشابهة واكشفها بأقل عدد من المحاولات.</p>
+        </header>
 
-        // بعد 3 ثواني، إخفاء شاشة التحميل وبدء اللعبة
-        setTimeout(function() {
-            document.getElementById('loading-overlay').style.display = 'none';
-
-            const gameContainer = document.createElement('div');
-            gameContainer.className = 'game-container';
-            gameContainer.innerHTML = `
-                <h2>لعبة الذاكرة</h2>
-                <div class="memory-game">
-                    <div class="memory-card" data-framework="aurelia">
-                        <img class="front-face" src="img/aurelia.svg" alt="Aurelia" />
-                        <img class="back-face" src="img/js-badge.svg" alt="JS Badge" />
-                    </div>
-                    <div class="memory-card" data-framework="aurelia">
-                        <img class="front-face" src="img/aurelia.svg" alt="Aurelia" />
-                        <img class="back-face" src="img/js-badge.svg" alt="JS Badge" />
-                    </div>
-                    <div class="memory-card" data-framework="angular">
-                        <img class="front-face" src="img/angular.svg" alt="Angular" />
-                        <img class="back-face" src="img/js-badge.svg" alt="JS Badge" />
-                    </div>
-                    <div class="memory-card" data-framework="angular">
-                        <img class="front-face" src="img/angular.svg" alt="Angular" />
-                        <img class="back-face" src="img/js-badge.svg" alt="JS Badge" />
-                    </div>
-                    <div class="memory-card" data-framework="vue">
-                        <img class="front-face" src="img/vue.svg" alt="Vue" />
-                        <img class="back-face" src="img/js-badge.svg" alt="JS Badge" />
-                    </div>
-                    <div class="memory-card" data-framework="vue">
-                        <img class="front-face" src="img/vue.svg" alt="Vue" />
-                        <img class="back-face" src="img/js-badge.svg" alt="JS Badge" />
-                    </div>
-                    <div class="memory-card" data-framework="react">
-                        <img class="front-face" src="img/react.svg" alt="React" />
-                        <img class="back-face" src="img/js-badge.svg" alt="JS Badge" />
-                    </div>
-                    <div class="memory-card" data-framework="react">
-                        <img class="front-face" src="img/react.svg" alt="React" />
-                        <img class="back-face" src="img/js-badge.svg" alt="JS Badge" />
-                    </div>
+        <div class="game-container">
+            <div class="game-info">
+                <div class="info-box">
+                    <h3>الوقت</h3>
+                    <p id="timer">00:00</p>
                 </div>
+                <div class="info-box">
+                    <h3>المحاولات</h3>
+                    <p id="moves">0</p>
+                </div>
+                <div class="info-box">
+                    <h3>الأزواج</h3>
+                    <p id="pairs">0/8</p>
+                </div>
+                <div class="info-box">
+                    <h3>المستوى</h3>
+                    <p id="level">مبتدئ</p>
+                    <div class="level-indicator">★★☆</div>
+                </div>
+            </div>
+
+            <div class="memory-game"></div>
+
+            <div class="controls">
+                <button onclick="initGame()">إعادة التحدي</button>
                 <button onclick="closeGame()">إغلاق اللعبة</button>
-            `;
-            document.body.appendChild(gameContainer);
+            </div>
+        </div>
+    `;
+    document.body.appendChild(gameContainer);
 
-            const cards = document.querySelectorAll('.memory-card');
-            let hasFlippedCard = false;
-            let lockBoard = false;
-            let firstCard, secondCard;
-
-            function flipCard() {
-                if (lockBoard) return;
-                if (this === firstCard) return;
-
-                this.classList.add('flip');
-
-                if (!hasFlippedCard) {
-                    hasFlippedCard = true;
-                    firstCard = this;
-                    return;
-                }
-
-                secondCard = this;
-                checkForMatch();
-            }
-
-            function checkForMatch() {
-                let isMatch = firstCard.dataset.framework === secondCard.dataset.framework;
-                isMatch ? disableCards() : unflipCards();
-            }
-
-            function disableCards() {
-                firstCard.removeEventListener('click', flipCard);
-                secondCard.removeEventListener('click', flipCard);
-
-                resetBoard();
-            }
-
-            function unflipCards() {
-                lockBoard = true;
-
-                setTimeout(() => {
-                    firstCard.classList.remove('flip');
-                    secondCard.classList.remove('flip');
-
-                    resetBoard();
-                }, 1500);
-            }
-
-            function resetBoard() {
-                [hasFlippedCard, lockBoard] = [false, false];
-                [firstCard, secondCard] = [null, null];
-            }
-
-            (function shuffle() {
-                cards.forEach(card => {
-                    let randomPos = Math.floor(Math.random() * 12);
-                    card.style.order = randomPos;
-                });
-            })();
-
-            cards.forEach(card => card.addEventListener('click', flipCard));
-        }, 3000); // مدة التحميل 3 ثواني
-    }
-
-    function closeGame() {
-        const gameContainer = document.querySelector('.game-container');
-        if (gameContainer) {
-            gameContainer.remove();
-        }
-    }
+    // تهيئة اللعبة
+    initGame();
+}
 </script>
 <script>
     async function sendMessageToOpenAI(message) {
@@ -1650,6 +1998,72 @@
             themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
         }
     });
+</script>
+<script>
+// إضافة أيام التقويم
+function initializeCalendar() {
+    const calendar = document.querySelector('.streak-calendar');
+    const days = 30; // عدد الأيام التي تريد عرضها
+    
+    for (let i = 0; i < days; i++) {
+        const day = document.createElement('div');
+        day.className = 'streak-day';
+        // إضافة بعض الأيام النشطة كمثال
+        if (i > days - 8) { // آخر 7 أيام
+            day.classList.add('active');
+        }
+        calendar.appendChild(day);
+    }
+}
+
+// استدعاء الدالة عند تحميل الصفحة
+document.addEventListener('DOMContentLoaded', initializeCalendar);
+</script>
+<script>
+// النصائح المتحركة
+const tips = [
+    "حافظ على نشاطك الذهني من خلال ممارسة الألعاب الذهنية والقراءة",
+    "تناول غذاء صحي ومتوازن يحتوي على الفواكه والخضروات",
+    "احرص على ممارسة التمارين الرياضية بانتظام لتحسين الدورة الدموية",
+    "حافظ على التواصل الاجتماعي مع الأصدقاء والعائلة",
+    "احصل على قسط كافٍ من النوم والراحة",
+    "تجنب التوتر والقلق من خلال ممارسة التأمل والاسترخاء",
+    "نظم مواعيد أدويتك وضع تذكيرات يومية",
+    "احتفظ بمفكرة لتدوين الملاحظات المهمة",
+    "اجعل منزلك آمناً وخالياً من العوائق"
+];
+
+let currentTipIndex = 0;
+const tipText = document.querySelector('.tip-text');
+
+function showNextTip() {
+    tipText.style.opacity = 0;
+    setTimeout(() => {
+        tipText.textContent = tips[currentTipIndex];
+        tipText.style.opacity = 1;
+        currentTipIndex = (currentTipIndex + 1) % tips.length;
+    }, 500);
+}
+
+// عرض النصيحة الأولى فوراً
+showNextTip();
+
+// تغيير النصيحة كل 10 ثواني
+setInterval(showNextTip, 10000);
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // تهيئة جميع المكونات عند تحميل الصفحة
+    initializeCalendar();
+    showNextTip();
+    
+    // إضافة مستمعي الأحداث
+    document.querySelectorAll('.tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+            // ...existing code...
+        });
+    });
+});
 </script>
 </body>
 </html>
