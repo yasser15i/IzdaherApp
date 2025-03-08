@@ -3,35 +3,439 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ازدهر - الصفحة الرئيسية</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>ازدهر - مساعد شخصي للأشخاص المصابين بالزهايمر</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --primary-color: #006B5D;
+            --secondary-color: #00A388;
+            --text-color: #2C3E50;
+            --light-bg: #F8F9FA;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-color);
+        }
+
+        .navbar {
+            background: var(--white);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .hero {
+            margin-top: 80px;
+            background: linear-gradient(rgba(0,107,93,0.9), rgba(0,163,136,0.9)), url('https://labayh.net/ar/wp-content/uploads/2020/12/hero-bg.jpg');
+            background-size: cover;
+            padding: 6rem 2rem;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            background: var(--white);
+            color: var(--primary-color);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .features {
+            padding: 4rem 2rem;
+            background: var(--white);
+        }
+
+        .features-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .feature-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var (--text-color);
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* تحسين التجاوب مع الأجهزة */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                background: var(--white);
+                width: 100%;
+                height: auto;
+                flex-direction: column;
+                padding: 2rem;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .menu-toggle {
+                display: block;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+
+            .contact-form {
+                width: 95%;
+                margin: 0 auto;
+            }
+        }
+
+        /* إضافة قسم التواصل */
+        .contact {
+            padding: 4rem 2rem;
+            background: var(--light-bg);
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--secondary-color);
+        }
+
+        .contact-form {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: right;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .menu-toggle {
+            display: none; /* إخفاء زر القائمة في الشاشات الكبيرة */
+        }
+
+        /* تحسين التجاوب مع الأجهزة المحمولة */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+                font-size: 1.8rem;
+                color: var(--primary-color);
+                cursor: pointer;
+                padding: 0.5rem;
+            }
+
+            .nav-links {
+                display: flex; /* تغيير من none إلى flex */
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                background: var(--white);
+                width: 100%;
+                height: auto;
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                text-align: center;
+                transition: 0.3s ease-in-out;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 0.8rem;
+                font-size: 1.1rem;
+            }
+
+            .nav-links .cta-button {
+                margin-top: 1rem;
+                display: inline-block;
+                background: var(--primary-color);
+                color: var(--white);
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <div class="logo"><i class="fas fa-brain icon-float"></i> ازدهر</div>
-        <p>مساعد شخصي للأشخاص المصابين بالزهايمر</p>
-    </header>
-    
-    <div class="container">
-        <div class="tips-box">
-            <h2>نصائح للأشخاص المصابين بالزهايمر والنسيان والخرف</h2>
-            <ul>
-                <li>حافظ على نشاطك الذهني من خلال الألعاب والتمارين العقلية.</li>
-                <li>تناول غذاء صحي ومتوازن.</li>
-                <li>احرص على ممارسة الرياضة بانتظام.</li>
-                <li>تواصل مع الأصدقاء والعائلة بانتظام.</li>
-                <li>احصل على قسط كافٍ من النوم.</li>
-            </ul>
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo">ازدهر</div>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="nav-links">
+                <a href="#features">المميزات</a>
+                <a href="#about">عن ازدهر</a>
+                <a href="#contact">تواصل معنا</a>
+                <a href="index.html" class="cta-button">ابدأ الآن</a>
+            </div>
         </div>
-        
-        <div class="marketing">
-            <p>ازدهر هو المساعد الشخصي الأول للأشخاص المصابين بالزهايمر والنسيان والخرف. يساعدك على تنظيم حياتك اليومية وتذكيرك بالمواعيد الهامة.</p>
-            <a href="index.html" class="main-button">ابدأ الآن</a>
-        </div>
-    </div>
+    </nav>
 
-    <script src="scripts.js"></script>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>مساعدك الشخصي للتغلب على الزهايمر</h1>
+            <p>نساعدك على تنظيم حياتك اليومية وتذكيرك بالمواعيد الهامة بطريقة سهلة وفعالة</p>
+            <a href="index.html" class="cta-button">ابدأ رحلتك مع ازدهر</a>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fas fa-bell"></i>
+                <h3>تذكير بالمواعيد</h3>
+                <p>نساعدك على تذكر مواعيد الدواء والمواعيد الطبية المهمة</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-brain"></i>
+                <h3>تمارين للذاكرة</h3>
+                <p>مجموعة متنوعة من التمارين لتنشيط الذاكرة والحفاظ على النشاط الذهني</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-users"></i>
+                <h3>دعم العائلة</h3>
+                <p>إمكانية مشاركة المعلومات والتنبيهات مع أفراد العائلة</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="contact-container">
+            <h2 class="section-title">تواصل معنا</h2>
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">الاسم</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">البريد الإلكتروني</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">رقم الجوال</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">الرسالة</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">إرسال الرسالة</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        // تفعيل/إلغاء تفعيل القائمة عند النقر على الزر
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // إغلاق القائمة عند النقر على أي رابط
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // إغلاق القائمة عند التمرير
+        window.addEventListener('scroll', () => {
+            if (navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // إغلاق القائمة عند النقر خارجها
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+                navLinks.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
