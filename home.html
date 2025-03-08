@@ -656,6 +656,117 @@
                 padding: 1.5rem;
             }
         }
+
+        .ai-assistant {
+            padding: 4rem 2rem;
+            background: var(--white);
+        }
+
+        .ai-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .ai-content {
+            background: rgba(102, 20, 184, 0.1);
+            padding: 3rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .ai-text {
+            flex: 1;
+        }
+
+        .ai-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .ai-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(102, 20, 184, 0.2);
+            /* إزالة الأنيميشن */
+            /* animation: float 3s ease-in-out infinite; */
+        }
+
+        @media (max-width: 968px) {
+            .ai-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .ai-image {
+                order: -1;
+                margin-bottom: 2rem;
+            }
+            
+            .ai-image img {
+                max-width: 80%;
+            }
+        }
+
+        .ai-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .ai-feature-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .ai-feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(102, 20, 184, 0.2);
+        }
+
+        .ai-feature-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .ai-feature-card h3 {
+            font-size: 1.5rem;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .ai-feature-card p {
+            color: var(--text-color);
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .ai-content {
+                padding: 1.5rem;
+            }
+            
+            .ai-features {
+                grid-template-columns: 1fr;
+            }
+            
+            .ai-feature-card {
+                padding: 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -690,7 +801,7 @@
     <section class="highlight">
         <div class="highlight-content">
             <h1>خصوصية. جودة. أمان</h1>
-            <p>مساعدك الشخصي على مدار الساعة ، بأمان وخصوصية ، يقدمها لك أفضل المعالجين والمحترفين والمطوريين بالمجال.</p>
+            <p>مساعدك الشخصي على مدار الساعة ، بأمان وخصوصية ، يقدمها لك أفضل المعالجين والمحترفين والطورين بالمجال.</p>
             <a href="https://github.com/yasser15i" class="cta-button">
                 <img src="https://images.sftcdn.net/images/t_app-icon-m/p/a0dd6f9a-9b26-11e6-b626-00163ec9f5fa/3571981236/xcode-icon.png" alt="Xcode" style="width: 45px; height: 45px; vertical-align: middle; margin-left: 8px;">
                 حمل التطبيق الآن
@@ -744,6 +855,36 @@
                             <p>دعم متواصل</p>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ai-assistant">
+        <div class="ai-container">
+            <h2 class="section-title">المساعد الذكي في ازدهر</h2>
+            <div class="ai-content">
+                <div class="ai-text">
+                    <div class="ai-features">
+                        <div class="ai-feature-card">
+                            <i class="fas fa-robot"></i>
+                            <h3>مساعد شخصي 24/7</h3>
+                            <p>يتواجد معك المساعد الشخصي على مدار الساعة للإجابة على استفساراتك وتذكيرك بكل ما يهمك</p>
+                        </div>
+                        <div class="ai-feature-card">
+                            <i class="fas fa-microphone-alt"></i>
+                            <h3>التحكم الصوتي</h3>
+                            <p>يمكنك التحدث مباشرة مع المساعد الشخصي عبر الأوامر الصوتية لتسهيل استخدام التطبيق</p>
+                        </div>
+                        <div class="ai-feature-card">
+                            <i class="fas fa-memory"></i>
+                            <h3>ذاكرة رقمية</h3>
+                            <p>يحتفظ بمعلومات عن عائلتك وأصدقائك وذكرياتك المهمة ويساعدك على تذكرها</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="ai-image">
+                    <img src="https://www.nosghy.com/wp-content/uploads/2024/09/hero_1.png" alt="تطبيق ازدهر على الهاتف">
                 </div>
             </div>
         </div>
