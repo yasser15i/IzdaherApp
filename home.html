@@ -16,6 +16,31 @@
             --white: #FFFFFF;
         }
 
+        [data-theme="dark"] {
+            --text-color: #e1e1e1;
+            --light-bg: #1a1a1a;
+            --white: #2d2d2d;
+        }
+
+        [data-theme="dark"] .hero {
+            color: #FFFFFF;
+        }
+
+        [data-theme="dark"] .hero h1,
+        [data-theme="dark"] .hero p {
+            color: #FFFFFF;
+        }
+
+        [data-theme="dark"] .hero .cta-button {
+            background: #FFFFFF;
+            color: var(--primary-color);
+        }
+
+        [data-theme="dark"] .hero .cta-button:hover {
+            background: var(--primary-color);
+            color: #FFFFFF;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -354,12 +379,36 @@
                 color: var(--primary-color);
             }
         }
+
+        .theme-toggle {
+            cursor: pointer;
+            padding: 0.5rem;
+            font-size: 1.2rem;
+            color: var(--text-color);
+            margin-left: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .theme-toggle i {
+            transition: color 0.3s ease;
+        }
+
+        [data-theme="dark"] .theme-toggle i.fa-moon {
+            color: #ffd700;
+        }
     </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="nav-content">
             <div class="logo">ازدهر</div>
+            <div class="theme-toggle">
+                <i class="fas fa-moon"></i>
+            </div>
             <div class="menu-toggle">
                 <i class="fas fa-bars"></i>
             </div>
@@ -452,6 +501,34 @@
         document.addEventListener('click', (e) => {
             if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
                 navLinks.classList.remove('active');
+            }
+        });
+
+        // إضافة وظيفة تبديل الوضع المظلم
+        const themeToggle = document.querySelector('.theme-toggle');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        // التحقق من وجود تفضيل مخزن
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme) {
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            if (currentTheme === 'dark') {
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            } else {
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        }
+
+        themeToggle.addEventListener('click', () => {
+            let theme = document.documentElement.getAttribute('data-theme');
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
             }
         });
     </script>
