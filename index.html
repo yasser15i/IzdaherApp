@@ -1180,6 +1180,83 @@
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
 }
+/* أنماط جديدة للصفحة الرئيسية */
+.welcome-box {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    margin-bottom: 2rem;
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.welcome-box i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    animation: bounce 2s infinite;
+}
+
+.activities-summary {
+    margin: 2rem 0;
+}
+
+.activity-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.activity-card {
+    background: var(--white-color);
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.activity-card:hover {
+    transform: translateY(-5px);
+}
+
+.activity-card i {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.activity-count {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin: 0.5rem 0;
+}
+
+.reminder-timeline {
+    background: var(--white-color);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-top: 1rem;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-15px);}
+    60% {transform: translateY(-7px);}
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
     </style>
 </head>
 <body>
@@ -1214,8 +1291,8 @@
     <div class="container">
         <a href="home.html" class="back-button"><i class="fas fa-arrow-left"></i> العودة إلى الصفحة الرئيسية</a>
         <div class="tabs">
-            <div class="tab" data-tab="home"><i class="fas fa-home"></i> الرئيسية</div>
-            <div class="tab active" data-tab="reminders"><i class="fas fa-bell"></i> التذكيرات</div>
+            <div class="tab active" data-tab="home"><i class="fas fa-home"></i> الرئيسية</div>
+            <div class="tab" data-tab="reminders"><i class="fas fa-bell"></i> التذكيرات</div>
             <div class="tab" data-tab="chat"><i class="fas fa-comment-dots"></i> المساعد الشخصي</div>
             <div class="tab" data-tab="exercises"><i class="fas fa-dumbbell"></i> تمارين الذاكرة</div>
             <div class="tab" data-tab="settings"><i class="fas fa-cog"></i> الإعدادات</div>
@@ -1236,7 +1313,7 @@
     </script>
         
         <!-- قسم التذكيرات -->
-        <div class="tab-content active" id="reminders">
+        <div class="tab-content" id="reminders">
             <h2><i class="fas fa-plus-circle"></i> إضافة تذكير جديد</h2>
             <form class="reminder-form" id="reminder-form">
                 <div class="form-group fade-in" style="animation-delay: 0.1s;">
@@ -1307,7 +1384,7 @@
         </div>
         
       <!-- قسم تمارين الذاكرة -->
-      <div class="tab-content active" id="exercises">
+      <div class="tab-content" id="exercises">
         <h2><i class="fas fa-brain"></i> تمارين الذاكرة</h2>
         <div class="exercises-container">
             <!-- تمرين 1: لعبة الذاكرة -->
@@ -1693,12 +1770,13 @@
             <div class="profile-container">
                 <!-- معلومات المستخدم -->
                 <div class="profile-section user-info">
-                    <div class="profile-header">
-                        <i class="fas fa-user-circle profile-avatar"></i>
-                        <h3 class="profile-name">اسم المستخدم</h3>
-                        <p class="profile-since">عضو منذ: <span>8 مارس 2025</span></p>
-                    </div>
-                </div>
+    <div class="profile-header">
+        <i class="fas fa-user-circle profile-avatar" style="color: #808080;"></i>
+        <h3 class="profile-name">ياسر العقيل</h3>
+        <p class="username" style="color: #808080; font-size: 0.9em; margin-top: -5px;">@ysr15v</p>
+        <p class="profile-since">عضو منذ: <span>21 فبراير 2025</span></p>
+    </div>
+</div>
 
                 <!-- إحصائيات التمارين -->
                 <div class="profile-section stats">
@@ -1780,20 +1858,56 @@
         </div>
     </div>
     <!-- قسم الرئيسية -->
-    <div class="tab-content" id="home">
-        <h2><i class="fas fa-home"></i> الصفحة الرئيسية</h2>
-        
-        <!-- صندوق النصائح المتحرك -->
-        <div class="tips-slider">
-            <div class="tip-box">
-                <i class="fas fa-lightbulb tip-icon"></i>
-                <h3>نصيحة اليوم</h3>
-                <p class="tip-text"></p>
+    <div class="tab-content active" id="home">
+    <h2><i class="fas fa-home"></i> الصفحة الرئيسية</h2>
+    
+    <!-- صندوق الترحيب -->
+    <div class="welcome-box">
+        <i class="fas fa-smile-beam"></i>
+        <h3>مساء الخير ياسر </h3>
+        <p>يوم الإثنين 3:11م</p>
+    </div>
+
+    <!-- صندوق النصائح المتحرك -->
+    <div class="tips-slider">
+        <div class="tip-box">
+            <i class="fas fa-lightbulb tip-icon"></i>
+            <h3>نصيحة اليوم</h3>
+            <p class="tip-text"></p>
+        </div>
+    </div>
+
+    <!-- ملخص النشاطات -->
+    <div class="activities-summary">
+        <h3><i class="fas fa-chart-pie"></i> ملخص نشاطاتك</h3>
+        <div class="activity-grid">
+            <div class="activity-card">
+                <i class="fas fa-bell"></i>
+                <h4>التذكيرات النشطة</h4>
+                <p class="activity-count">5</p>
+            </div>
+            <div class="activity-card">
+                <i class="fas fa-dumbbell"></i>
+                <h4>تمارين اليوم</h4>
+                <p class="activity-count">3</p>
+            </div>
+            <div class="activity-card">
+                <i class="fas fa-trophy"></i>
+                <h4>الإنجازات</h4>
+                <p class="activity-count">8</p>
             </div>
         </div>
-
-        <!-- باقي محتوى الصفحة الرئيسية هنا -->
     </div>
+
+    <!-- التذكيرات القادمة -->
+    <div class="upcoming-reminders">
+        <h3><i class="fas fa-calendar-alt"></i> التذكيرات القادمة</h3>
+        <div class="reminder-timeline">
+            <!-- سيتم إضافة التذكيرات ديناميكياً -->
+        </div>
+    </div>
+</div>
+
     <script>
         document.getElementById('register-btn').addEventListener('click', function() {
             const username = document.getElementById('register-username').value;
