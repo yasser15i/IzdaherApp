@@ -1141,42 +1141,137 @@
         </div>
         
       <!-- قسم تمارين الذاكرة -->
-<div class="tab-content active" id="exercises">
-    <h2><i class="fas fa-brain"></i> تمارين الذاكرة</h2>
-    <div class="exercises-container">
-    <!-- تمرين 1 -->
-    <div class="exercise-card">
-        <div class="exercise-header">
-        <h3>لعبة الذاكرة</h3>
-        </div>
-        <div class="exercise-body">
-        <p>حاول تذكر أماكن الصور المتطابقة في أقل وقت ممكن.</p>
-        <button class="exercise-btn" onclick="startMemoryGame()">ابدأ اللعبة</button>
+      <div class="tab-content active" id="exercises">
+        <h2><i class="fas fa-brain"></i> تمارين الذاكرة</h2>
+        <div class="exercises-container">
+            <!-- تمرين 1: لعبة الذاكرة -->
+            <div class="exercise-card">
+                <div class="exercise-header">
+                    <i class="fas fa-puzzle-piece fa-2x"></i>
+                    <h3>لعبة الذاكرة</h3>
+                </div>
+                <div class="exercise-body">
+                    <p>حاول تذكر أماكن الصور المتطابقة في أقل وقت ممكن.</p>
+                    <button class="exercise-btn" onclick="startMemoryGame()">ابدأ اللعبة</button>
+                </div>
+            </div>
+    
+            <!-- تمرين 2: تحدي الكلمات -->
+            <div class="exercise-card">
+                <div class="exercise-header">
+                    <i class="fas fa-font fa-2x"></i>
+                    <h3>تحدي الكلمات</h3>
+                </div>
+                <div class="exercise-body">
+                    <p>اكتب أكبر عدد ممكن من الكلمات التي تبدأ بحرف معين خلال دقيقة واحدة.</p>
+                    <button class="exercise-btn" onclick="startWordChallenge()">ابدأ التحدي</button>
+                </div>
+            </div>
+    
+            <!-- تمرين 3: تحدي الحساب -->
+            <div class="exercise-card">
+                <div class="exercise-header">
+                    <i class="fas fa-calculator fa-2x"></i>
+                    <h3>تحدي الحساب</h3>
+                </div>
+                <div class="exercise-body">
+                    <p>حل العمليات الحسابية البسيطة في أسرع وقت ممكن لتنشيط الذاكرة.</p>
+                    <button class="exercise-btn" onclick="startMathChallenge()">ابدأ التحدي</button>
+                </div>
+            </div>
+    
+            <!-- تمرين 4: تذكر الأشكال -->
+            <div class="exercise-card">
+                <div class="exercise-header">
+                    <i class="fas fa-shapes fa-2x"></i>
+                    <h3>تذكر الأشكال</h3>
+                </div>
+                <div class="exercise-body">
+                    <p>شاهد مجموعة من الأشكال الملونة ثم حاول تذكر ترتيبها وألوانها.</p>
+                    <button class="exercise-btn" onclick="startShapeMemory()">ابدأ التمرين</button>
+                </div>
+            </div>
+    
+            <!-- تمرين 5: ترتيب الأرقام -->
+            <div class="exercise-card">
+                <div class="exercise-header">
+                    <i class="fas fa-sort-numeric-down fa-2x"></i>
+                    <h3>ترتيب الأرقام</h3>
+                </div>
+                <div class="exercise-body">
+                    <p>رتب الأرقام تصاعدياً أو تنازلياً في أسرع وقت ممكن.</p>
+                    <button class="exercise-btn" onclick="startNumberSort()">ابدأ التمرين</button>
+                </div>
+            </div>
+    
+            <!-- تمرين 6: تذكر الصور -->
+            <div class="exercise-card">
+                <div class="exercise-header">
+                    <i class="fas fa-images fa-2x"></i>
+                    <h3>تذكر الصور</h3>
+                </div>
+                <div class="exercise-body">
+                    <p>شاهد مجموعة من الصور اليومية وحاول تذكرها بعد إخفائها.</p>
+                    <button class="exercise-btn" onclick="startImageMemory()">ابدأ التمرين</button>
+                </div>
+            </div>
         </div>
     </div>
-    <!-- تمرين 2 -->
-    <div class="exercise-card">
-        <div class="exercise-header">
-        <h3>تحدي الكلمات</h3>
-        </div>
-        <div class="exercise-body">
-        <p>اكتب أكبر عدد ممكن من الكلمات التي تبدأ بحرف معين خلال دقيقة واحدة.</p>
-        <button class="exercise-btn" onclick="startWordChallenge()">ابدأ التحدي</button>
-        </div>
-    </div>
-    </div>
-</div>
-<script>
-    function startMemoryGame() {
-    alert('لعبة الذاكرة ستبدأ الآن!');
-    // هنا يمكنك إضافة كود اللعبة الفعلي
-    }
-
-    function startWordChallenge() {
-    alert('تحدي الكلمات سيبدأ الآن!');
-    // هنا يمكنك إضافة كود التحدي الفعلي
-    }
-</script>
+    
+    <!-- إضافة الدوال الجديدة للتمارين -->
+    <script>
+        function startMathChallenge() {
+            const gameContainer = document.createElement('div');
+            gameContainer.className = 'game-container';
+            gameContainer.innerHTML = `
+                <h2>تحدي الحساب</h2>
+                <div class="math-challenge">
+                    <p>تحدي الحساب قيد التطوير...</p>
+                </div>
+                <button onclick="closeGame()">إغلاق التحدي</button>
+            `;
+            document.body.appendChild(gameContainer);
+        }
+    
+        function startShapeMemory() {
+            const gameContainer = document.createElement('div');
+            gameContainer.className = 'game-container';
+            gameContainer.innerHTML = `
+                <h2>تذكر الأشكال</h2>
+                <div class="shape-memory">
+                    <p>تمرين تذكر الأشكال قيد التطوير...</p>
+                </div>
+                <button onclick="closeGame()">إغلاق التمرين</button>
+            `;
+            document.body.appendChild(gameContainer);
+        }
+    
+        function startNumberSort() {
+            const gameContainer = document.createElement('div');
+            gameContainer.className = 'game-container';
+            gameContainer.innerHTML = `
+                <h2>ترتيب الأرقام</h2>
+                <div class="number-sort">
+                    <p>تمرين ترتيب الأرقام قيد التطوير...</p>
+                </div>
+                <button onclick="closeGame()">إغلاق التمرين</button>
+            `;
+            document.body.appendChild(gameContainer);
+        }
+    
+        function startImageMemory() {
+            const gameContainer = document.createElement('div');
+            gameContainer.className = 'game-container';
+            gameContainer.innerHTML = `
+                <h2>تذكر الصور</h2>
+                <div class="image-memory">
+                    <p>تمرين تذكر الصور قيد التطوير...</p>
+                </div>
+                <button onclick="closeGame()">إغلاق التمرين</button>
+            `;
+            document.body.appendChild(gameContainer);
+        }
+    </script>
         <!-- قسم الإعدادات -->
         <div class="tab-content" id="settings">
             <h2><i class="fas fa-cog"></i> الإعدادات</h2>
@@ -1316,42 +1411,6 @@
         setTimeout(() => {
             alert.style.display = 'none';
         }, 3000);
-    }
-</script>
-<script>
-    function startMemoryGame() {
-        const gameContainer = document.createElement('div');
-        gameContainer.className = 'game-container';
-        gameContainer.innerHTML = `
-            <h2>لعبة الذاكرة</h2>
-            <div class="memory-game">
-                <!-- هنا يمكنك إضافة كود اللعبة الفعلي -->
-                <p>لعبة الذاكرة قيد التطوير...</p>
-            </div>
-            <button onclick="closeGame()">إغلاق اللعبة</button>
-        `;
-        document.body.appendChild(gameContainer);
-    }
-
-    function startWordChallenge() {
-        const gameContainer = document.createElement('div');
-        gameContainer.className = 'game-container';
-        gameContainer.innerHTML = `
-            <h2>تحدي الكلمات</h2>
-            <div class="word-challenge">
-                <!-- هنا يمكنك إضافة كود التحدي الفعلي -->
-                <p>تحدي الكلمات قيد التطوير...</p>
-            </div>
-            <button onclick="closeGame()">إغلاق التحدي</button>
-        `;
-        document.body.appendChild(gameContainer);
-    }
-
-    function closeGame() {
-        const gameContainer = document.querySelector('.game-container');
-        if (gameContainer) {
-            gameContainer.remove();
-        }
     }
 </script>
 <script>
